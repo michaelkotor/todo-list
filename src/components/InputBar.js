@@ -20,7 +20,7 @@ class InputBar extends React.Component {
     }
 
     sendValue = () => {
-        this.props.parentCallback(this.state.value);
+        this.props.getItems(this.state.value);
     }
 
     render() {
@@ -31,7 +31,7 @@ class InputBar extends React.Component {
                     <div className="ui input massive focus">
                         <input type="text" value={this.state.value} onChange={this.onChange}></input>
                     </div>
-                    <button className="ui red button massive" type="submit">Add</button>
+                    <button className="ui green button massive" type="submit">Add</button>
                 </form>
             </div>
         )

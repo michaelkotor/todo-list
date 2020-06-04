@@ -6,18 +6,22 @@ class App extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = { items: ['123']};
+    this.state = {
+      items: ['123']
+    };
   };
 
-  callbackFunction = (value) => {
+  getItems = (value) => {
     this.state.items.push(value);
-    this.setState({items : this.state.items});
+    this.setState({
+      items: this.state.items
+    });
   };
 
   render() {
     return (
       <div className="ui container">
-        <InputBar parentCallback={this.callbackFunction}></InputBar>
+        <InputBar getItems={this.getItems}></InputBar>
         <List content={this.state.items}></List>
       </div>
 
