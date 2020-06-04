@@ -7,7 +7,8 @@ class List extends React.Component {
     }
 
     printItems = () => {
-        return this.props.content.map(item =><Item value={item} parentCallback={this.callbackFunction}></Item>)
+        console.log(this.props.content);
+        return this.props.content.map(item =><Item key={item.id} value={item}></Item>)
     };
 
     onSubmit = (event) => {
@@ -20,7 +21,7 @@ class List extends React.Component {
                 <div className="ui huge header">Tasks TODO:</div>
                 {this.printItems()}
                 <form onSubmit={this.onSubmit}>
-                    <button className="ui button red big right floated" type="submit" >Resolve</button>
+                    <button className="ui button red big right floated" type="submit">Resolve</button>
                 </form>
             </div>
         )

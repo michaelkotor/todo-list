@@ -7,21 +7,26 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      items: ['123']
+      items: []
     };
   };
 
-  getItems = (value) => {
-    this.state.items.push(value);
+  addItem = (value) => {
     this.setState({
-      items: this.state.items
-    });
+      items: [...this.state.items, value]
+    })
   };
+
+  show = () => {
+    if(this.state.items.length > 0)
+      return this.state.items[0].text + '!';
+  }
 
   render() {
     return (
       <div className="ui container">
-        <InputBar getItems={this.getItems}></InputBar>
+        <InputBar addItem={this.addItem}></InputBar>
+        {this.show()}
         <List content={this.state.items}></List>
       </div>
 

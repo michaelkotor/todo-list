@@ -3,33 +3,50 @@ import React from 'react';
 class InputBar extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { value: '' };
+        this.state = {
+            item: {
+                id: 0,
+                text: '',
+                isDone: false
+            }
+        };
     }
 
     onChange = event => {
-        this.setState({ value: event.target.value });
-        console.log(event.target.value);
+        this.setState({
+            item: {
+                id: 'id' + (new Date()).getTime(),
+                text: event.target.value,
+                isDone: false
+            }
+        });
     }
 
-    onSubmit = event => {
+    onSubmit = (event) => {
         event.preventDefault();
-        if(this.state.value.length > 0) {
+        if (this.state.item.text.length > 0) {
             this.sendValue();
-            this.state.value = '';
+            this.setState({
+                item: {
+                    id: 'id' + (new Date()).getTime(),
+                    text: '',
+                    isDone: false
+                }
+            });
         }
     }
 
     sendValue = () => {
-        this.props.getItems(this.state.value);
+        this.props.addItem(this.state.item);
     }
 
     render() {
         return (
             <div>
-                <form  onSubmit={this.onSubmit}>
+                <form onSubmit={this.onSubmit}>
                     <label className="ui label massive ">New task</label>
                     <div className="ui input massive focus">
-                        <input type="text" value={this.state.value} onChange={this.onChange}></input>
+                        <input type="text" value={this.state.item.text} onChange={this.onChange}></input>
                     </div>
                     <button className="ui green button massive" type="submit">Add</button>
                 </form>
